@@ -10,11 +10,9 @@
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-    <context:component-scan base-package="com.iharding.gun" />
+    <context:component-scan base-package="com.iharding.gun"/>
     <!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
     <mvc:annotation-driven/>
-    <!-- 静态资源处理  css js imgs -->
-    <mvc:resources location="/gun/**" mapping="/gun"/>
 
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="jacksonMessageConverter"
@@ -49,24 +47,25 @@
         <property name="resolveLazily" value="true"/>
     </bean>
 
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="mediaTypes">
+            <value>
+                json=application/json
+            </value>
+        </property>
+        <property name="defaultContentType" value="text/html"/>
+    </bean>
+
     <!-- 配置ViewResolver 。可用多个ViewResolver 。使用order属性排序。   InternalResourceViewResolver 放在最后-->
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <property name="order" value="1"></property>
-        <property name="mediaTypes">
-            <map>
-                <!-- 告诉视图解析器，返回的类型为json格式 -->
-                <entry key="json" value="application/json" />
-                <entry key="xml" value="application/xml" />
-                <entry key="htm" value="text/htm" />
-            </map>
-        </property>
+        <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
         <property name="defaultViews">
             <list>
                 <!-- ModelAndView里的数据变成JSON -->
-                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
             </list>
         </property>
-        <property name="ignoreAcceptHeader" value="true"></property>
     </bean>
 
     <!-- 定义跳转的文件的前后缀 ，视图模式配置-->

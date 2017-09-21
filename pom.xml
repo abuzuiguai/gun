@@ -279,6 +279,11 @@
             <version>1.16.16</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.4.0</version>
+        </dependency>
     </dependencies>
 
     <!-- .properties xml进行打包 -->
