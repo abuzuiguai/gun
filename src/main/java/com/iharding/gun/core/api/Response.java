@@ -1,4 +1,4 @@
-package com.iharding.gun.common;
+package com.iharding.gun.core.api;
 
 import com.iharding.gun.util.Constants;
 import com.iharding.gun.util.Status;

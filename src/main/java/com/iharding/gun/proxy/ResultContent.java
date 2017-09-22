@@ -1,4 +1,4 @@
-package com.iharding.gun.core;
+package com.iharding.gun.proxy;
 
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
 package com.iharding.gun.proxy;
 
-import com.iharding.gun.model.PageDataInput;
-import com.iharding.gun.model.PageDataOutput;
+import com.iharding.gun.core.api.PageDataInput;
+import com.iharding.gun.core.api.PageDataOutput;
 import org.springframework.stereotype.Component;
 
 /**

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iharding.gun.dao.www.mapper.CommentInfoMapper">
+	<!-- 映射定义列-->
+	<resultMap type="com.iharding.gun.dao.www.model.CommentInfo" id="commentInfoMap">
+		<id property="id" column="id"/>
+		<result property="title" column="title"/>
+		<result property="comment" column="comment"/>
+		<result property="starLevel" column="star_level"/>
+		<result property="createTime" column="create_time"/>
+	</resultMap>
+
+	<!-- 映射定义列-->
+	<resultMap type="com.iharding.gun.dao.www.model.wrapper.CommentInfoWrapper" id="commentInfoWrapperMap">
+		<id property="id" column="id"/>
+		<result property="title" column="title"/>
+		<result property="comment" column="comment"/>
+		<result property="starLevel" column="star_level"/>
+		<result property="createTime" column="create_time"/>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 t.id,	 t.title,	 t.comment,	 t.star_level,	 t.create_time
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectByPrimaryKey" resultMap="commentInfoMap" parameterType="java.lang.Long">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM www_comment_info t
+		 WHERE t.id = #{id}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectWrapperByPrimaryKey" resultMap="commentInfoWrapperMap" parameterType="java.lang.Long">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM www_comment_info t
+		 WHERE t.id = #{id}
+	</select>
+
+	<!-- 依据Map查询条件返回结果集-->
+	<select id="selectList" resultMap="commentInfoMap" parameterType="java.util.Map">
+		SELECT 
+		<include refid="Base_Column_List"/>
+		FROM www_comment_info t WHERE 1=1 
+		<if test="id != null and id != ''">
+				 and t.id = #{id}
+		</if>
+		<if test="title != null and title != ''">
+				 and t.title = #{title}
+		</if>
+		<if test="comment != null and comment != ''">
+				 and t.comment = #{comment}
+		</if>
+		<if test="starLevel != null and starLevel != ''">
+				 and t.star_level = #{starLevel}
+		</if>
+		<if test="createTime != null and createTime != ''">
+				 and t.create_time = #{createTime}
+		</if>
+	</select> 
+
+	<!-- 依据Map查询条件返回扩展属性结果集-->
+	<select id="selectListWrapper" resultMap="commentInfoWrapperMap" parameterType="java.util.Map">
+		SELECT 
+		<include refid="Base_Column_List"/>
+		FROM www_comment_info t WHERE 1=1 
+		<if test="id != null and id != ''">
+				 and t.id = #{id}
+		</if>
+		<if test="title != null and title != ''">
+				 and t.title = #{title}
+		</if>
+		<if test="comment != null and comment != ''">
+				 and t.comment = #{comment}
+		</if>
+		<if test="starLevel != null and starLevel != ''">
+				 and t.star_level = #{starLevel}
+		</if>
+		<if test="createTime != null and createTime != ''">
+				 and t.create_time = #{createTime}
+		</if>
+	</select> 
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 DELETE FROM www_comment_info
+		 WHERE id = #{id}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="insert" parameterType="com.iharding.gun.dao.www.model.CommentInfo">
+		 INSERT INTO www_comment_info
+ 		(id,title,comment,star_level,create_time) 
+		 VALUES 
+ 		(#{id},#{title},#{comment},#{starLevel},#{createTime}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKeySelective" parameterType="com.iharding.gun.dao.www.model.CommentInfo">
+		 UPDATE www_comment_info
+ 		 <set> 
+			<if test="title != null">
+				 title = #{title},
+			</if>
+			<if test="comment != null">
+				 comment = #{comment},
+			</if>
+			<if test="starLevel != null">
+				 star_level = #{starLevel},
+			</if>
+			<if test="createTime != null">
+				 create_time = #{createTime},
+			</if>
+
+ 		 </set>
+		 WHERE id = #{id}
+	</update>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKey" parameterType="com.iharding.gun.dao.www.model.CommentInfo">
+		 UPDATE www_comment_info
+		 SET 
+			 title = #{title},
+			 comment = #{comment},
+			 star_level = #{starLevel},
+			 create_time = #{createTime}
+		 WHERE id = #{id}
+	</update>
+</mapper>

@@ -1,4 +1,4 @@
-package com.iharding.gun.model;
+package com.iharding.gun.core.api;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +8,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class PageDataInput {
+public class PageDataInput<T> {
     private String simulator;
+    private Long goodsId;
 }

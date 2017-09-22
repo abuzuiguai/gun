@@ -1,26 +1,25 @@
 package com.iharding.gun.web;
 
-import com.iharding.gun.common.Response;
-import com.iharding.gun.model.PageDataInput;
-import com.iharding.gun.model.PageDataOutput;
-import com.iharding.gun.proxy.BlackAnalyzer;
+import com.iharding.gun.core.api.Response;
+import com.iharding.gun.core.api.PageDataInput;
+import com.iharding.gun.core.api.PageDataOutput;
+import com.iharding.gun.core.web.BaseController;
 import com.iharding.gun.proxy.BlackProxy;
 import com.iharding.gun.util.Configuration;
 import com.iharding.gun.util.SpringContextUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.io.Serializable;
 
 /**
  * Created by fyeman on 2017/9/15.
  */
 @Controller
 @RequestMapping("/web")
-public class WebController {
+public class WebController<T, E, ID extends Serializable> extends BaseController<T, E, ID> {
 
     @ResponseBody
     @RequestMapping("/start")

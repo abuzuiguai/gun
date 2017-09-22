@@ -1,4 +1,4 @@
-package com.iharding.gun.model;
+package com.iharding.gun.core.api;
 
 import lombok.Getter;
 import lombok.Setter;

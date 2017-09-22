@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iharding.gun.dao.www.mapper.WebsiteInfoMapper">
+	<!-- 映射定义列-->
+	<resultMap type="com.iharding.gun.dao.www.model.WebsiteInfo" id="websiteInfoMap">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="site" column="site"/>
+		<result property="type" column="type"/>
+		<result property="checkLabel" column="check_label"/>
+		<result property="createDate" column="create_date"/>
+		<result property="remark" column="remark"/>
+	</resultMap>
+
+	<!-- 映射定义列-->
+	<resultMap type="com.iharding.gun.dao.www.model.wrapper.WebsiteInfoWrapper" id="websiteInfoWrapperMap">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="site" column="site"/>
+		<result property="type" column="type"/>
+		<result property="checkLabel" column="check_label"/>
+		<result property="createDate" column="create_date"/>
+		<result property="remark" column="remark"/>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 t.id,	 t.name,	 t.site,	 t.type,	 t.check_label,	 t.create_date,	 t.remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectByPrimaryKey" resultMap="websiteInfoMap" parameterType="java.lang.Long">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM www_website_info t
+		 WHERE t.id = #{id}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectWrapperByPrimaryKey" resultMap="websiteInfoWrapperMap" parameterType="java.lang.Long">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM www_website_info t
+		 WHERE t.id = #{id}
+	</select>
+
+	<!-- 依据Map查询条件返回结果集-->
+	<select id="selectList" resultMap="websiteInfoMap" parameterType="java.util.Map">
+		SELECT 
+		<include refid="Base_Column_List"/>
+		FROM www_website_info t WHERE 1=1 
+		<if test="id != null and id != ''">
+				 and t.id = #{id}
+		</if>
+		<if test="name != null and name != ''">
+				 and t.name = #{name}
+		</if>
+		<if test="site != null and site != ''">
+				 and t.site = #{site}
+		</if>
+		<if test="type != null and type != ''">
+				 and t.type = #{type}
+		</if>
+		<if test="checkLabel != null and checkLabel != ''">
+				 and t.check_label = #{checkLabel}
+		</if>
+		<if test="createDate != null and createDate != ''">
+				 and t.create_date = #{createDate}
+		</if>
+		<if test="remark != null and remark != ''">
+				 and t.remark = #{remark}
+		</if>
+	</select> 
+
+	<!-- 依据Map查询条件返回扩展属性结果集-->
+	<select id="selectListWrapper" resultMap="websiteInfoWrapperMap" parameterType="java.util.Map">
+		SELECT 
+		<include refid="Base_Column_List"/>
+		FROM www_website_info t WHERE 1=1 
+		<if test="id != null and id != ''">
+				 and t.id = #{id}
+		</if>
+		<if test="name != null and name != ''">
+				 and t.name = #{name}
+		</if>
+		<if test="site != null and site != ''">
+				 and t.site = #{site}
+		</if>
+		<if test="type != null and type != ''">
+				 and t.type = #{type}
+		</if>
+		<if test="checkLabel != null and checkLabel != ''">
+				 and t.check_label = #{checkLabel}
+		</if>
+		<if test="createDate != null and createDate != ''">
+				 and t.create_date = #{createDate}
+		</if>
+		<if test="remark != null and remark != ''">
+				 and t.remark = #{remark}
+		</if>
+	</select> 
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 DELETE FROM www_website_info
+		 WHERE id = #{id}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="insert" parameterType="com.iharding.gun.dao.www.model.WebsiteInfo">
+		 INSERT INTO www_website_info
+ 		(id,name,site,type,check_label,create_date,remark) 
+		 VALUES 
+ 		(#{id},#{name},#{site},#{type},#{checkLabel},#{createDate},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKeySelective" parameterType="com.iharding.gun.dao.www.model.WebsiteInfo">
+		 UPDATE www_website_info
+ 		 <set> 
+			<if test="name != null">
+				 name = #{name},
+			</if>
+			<if test="site != null">
+				 site = #{site},
+			</if>
+			<if test="type != null">
+				 type = #{type},
+			</if>
+			<if test="checkLabel != null">
+				 check_label = #{checkLabel},
+			</if>
+			<if test="createDate != null">
+				 create_date = #{createDate},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE id = #{id}
+	</update>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKey" parameterType="com.iharding.gun.dao.www.model.WebsiteInfo">
+		 UPDATE www_website_info
+		 SET 
+			 name = #{name},
+			 site = #{site},
+			 type = #{type},
+			 check_label = #{checkLabel},
+			 create_date = #{createDate},
+			 remark = #{remark}
+		 WHERE id = #{id}
+	</update>
+</mapper>

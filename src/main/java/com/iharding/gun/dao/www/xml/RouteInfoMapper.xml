@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iharding.gun.dao.www.mapper.RouteInfoMapper">
+	<!-- 映射定义列-->
+	<resultMap type="com.iharding.gun.dao.www.model.RouteInfo" id="routeInfoMap">
+		<id property="id" column="id"/>
+		<result property="goodsId" column="goods_id"/>
+		<result property="elementName" column="element_name"/>
+		<result property="elementType" column="element_type"/>
+		<result property="eventType" column="event_type"/>
+		<result property="orderNo" column="order_no"/>
+		<result property="createDate" column="create_date"/>
+		<result property="remark" column="remark"/>
+	</resultMap>
+
+	<!-- 映射定义列-->
+	<resultMap type="com.iharding.gun.dao.www.model.wrapper.RouteInfoWrapper" id="routeInfoWrapperMap">
+		<id property="id" column="id"/>
+		<result property="goodsId" column="goods_id"/>
+		<result property="elementName" column="element_name"/>
+		<result property="elementType" column="element_type"/>
+		<result property="eventType" column="event_type"/>
+		<result property="orderNo" column="order_no"/>
+		<result property="createDate" column="create_date"/>
+		<result property="remark" column="remark"/>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 t.id,	 t.goods_id,	 t.element_name,	 t.element_type,	 t.event_type,	 t.order_no,	 t.create_date,	 t.remark
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectByPrimaryKey" resultMap="routeInfoMap" parameterType="java.lang.Long">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM www_route_info t
+		 WHERE t.id = #{id}
+	</select>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectWrapperByPrimaryKey" resultMap="routeInfoWrapperMap" parameterType="java.lang.Long">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM www_route_info t
+		 WHERE t.id = #{id}
+	</select>
+
+	<!-- 依据Map查询条件返回结果集-->
+	<select id="selectList" resultMap="routeInfoMap" parameterType="java.util.Map">
+		SELECT 
+		<include refid="Base_Column_List"/>
+		FROM www_route_info t WHERE 1=1 
+		<if test="id != null and id != ''">
+				 and t.id = #{id}
+		</if>
+		<if test="goodsId != null and goodsId != ''">
+				 and t.goods_id = #{goodsId}
+		</if>
+		<if test="elementName != null and elementName != ''">
+				 and t.element_name = #{elementName}
+		</if>
+		<if test="elementType != null and elementType != ''">
+				 and t.element_type = #{elementType}
+		</if>
+		<if test="eventType != null and eventType != ''">
+				 and t.event_type = #{eventType}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+				 and t.order_no = #{orderNo}
+		</if>
+		<if test="createDate != null and createDate != ''">
+				 and t.create_date = #{createDate}
+		</if>
+		<if test="remark != null and remark != ''">
+				 and t.remark = #{remark}
+		</if>
+	</select> 
+
+	<!-- 依据Map查询条件返回扩展属性结果集-->
+	<select id="selectListWrapper" resultMap="routeInfoWrapperMap" parameterType="java.util.Map">
+		SELECT 
+		<include refid="Base_Column_List"/>
+		FROM www_route_info t WHERE 1=1 
+		<if test="id != null and id != ''">
+				 and t.id = #{id}
+		</if>
+		<if test="goodsId != null and goodsId != ''">
+				 and t.goods_id = #{goodsId}
+		</if>
+		<if test="elementName != null and elementName != ''">
+				 and t.element_name = #{elementName}
+		</if>
+		<if test="elementType != null and elementType != ''">
+				 and t.element_type = #{elementType}
+		</if>
+		<if test="eventType != null and eventType != ''">
+				 and t.event_type = #{eventType}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+				 and t.order_no = #{orderNo}
+		</if>
+		<if test="createDate != null and createDate != ''">
+				 and t.create_date = #{createDate}
+		</if>
+		<if test="remark != null and remark != ''">
+				 and t.remark = #{remark}
+		</if>
+	</select> 
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 DELETE FROM www_route_info
+		 WHERE id = #{id}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="insert" parameterType="com.iharding.gun.dao.www.model.RouteInfo">
+		 INSERT INTO www_route_info
+ 		(id,goods_id,element_name,element_type,event_type,order_no,create_date,remark) 
+		 VALUES 
+ 		(#{id},#{goodsId},#{elementName},#{elementType},#{eventType},#{orderNo},#{createDate},#{remark}) 
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKeySelective" parameterType="com.iharding.gun.dao.www.model.RouteInfo">
+		 UPDATE www_route_info
+ 		 <set> 
+			<if test="goodsId != null">
+				 goods_id = #{goodsId},
+			</if>
+			<if test="elementName != null">
+				 element_name = #{elementName},
+			</if>
+			<if test="elementType != null">
+				 element_type = #{elementType},
+			</if>
+			<if test="eventType != null">
+				 event_type = #{eventType},
+			</if>
+			<if test="orderNo != null">
+				 order_no = #{orderNo},
+			</if>
+			<if test="createDate != null">
+				 create_date = #{createDate},
+			</if>
+			<if test="remark != null">
+				 remark = #{remark},
+			</if>
+
+ 		 </set>
+		 WHERE id = #{id}
+	</update>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKey" parameterType="com.iharding.gun.dao.www.model.RouteInfo">
+		 UPDATE www_route_info
+		 SET 
+			 goods_id = #{goodsId},
+			 element_name = #{elementName},
+			 element_type = #{elementType},
+			 event_type = #{eventType},
+			 order_no = #{orderNo},
+			 create_date = #{createDate},
+			 remark = #{remark}
+		 WHERE id = #{id}
+	</update>
+</mapper>
